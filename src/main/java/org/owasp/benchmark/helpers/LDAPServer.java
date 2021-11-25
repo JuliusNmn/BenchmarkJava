@@ -20,6 +20,7 @@ package org.owasp.benchmark.helpers;
 import java.io.File;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import org.apache.directory.server.constants.ServerDNConstants;
 import org.apache.directory.server.core.DefaultDirectoryService;
 import org.apache.directory.server.core.DirectoryService;
@@ -41,6 +42,13 @@ import org.apache.directory.shared.ldap.schema.manager.impl.DefaultSchemaManager
 import org.apache.directory.shared.ldap.schema.registries.SchemaLoader;
 
 public class LDAPServer {
+    
+    static {
+        // fix parse bug in apache tomcat util function
+        Properties props = System.getProperties();
+        props.setProperty("java.version", "1.8.0");
+    }
+
     /** The directory service */
     private DirectoryService service;
 
